@@ -1,3 +1,5 @@
+
+
 # Guibot [![GH Actions](https://github.com/intra2net/guibot/actions/workflows/ci.yml/badge.svg)](https://github.com/intra2net/guibot/actions/workflows/ci.yml) [![Documentation Status](https://readthedocs.org/projects/guibot/badge/?version=latest)](http://guibot.readthedocs.io/en/latest/?badge=latest) [![CodeQL](https://github.com/intra2net/guibot/actions/workflows/codeql.yml/badge.svg)](https://github.com/intra2net/guibot/actions/workflows/codeql.yml) [![codecov](https://codecov.io/gh/intra2net/guibot/branch/master/graph/badge.svg)](https://codecov.io/gh/intra2net/guibot) [![black](https://img.shields.io/badge/black-000000.svg?logo=black&label=code%20style)](https://github.com/psf/black) [![PyPI](https://img.shields.io/pypi/v/guibot?logo=pypi&label=PyPI)](https://pypi.org/project/guibot/)
 
 A tool for GUI automation using a variety of computer vision and display control backends.
@@ -38,6 +40,8 @@ Supported Display Controller (DC) backends are based on
 
 ## Further resources
 
+
+
 Homepage: http://guibot.org
 
 Documentation: http://guibot.readthedocs.io
@@ -47,3 +51,4 @@ Installation: https://github.com/intra2net/guibot/wiki/Packaging
 Issue tracking: https://github.com/intra2net/guibot/issues
 
 Project wiki: https://github.com/intra2net/guibot/wiki
+
