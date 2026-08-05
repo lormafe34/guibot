@@ -121,14 +121,15 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: '${{ env.artifact_name }}'
-        path: '${{ env.artifact_full_path }}'
+         name: '${{ env.artifact_name }}'
+         path: '${{ env.artifact_full_path }}'
+         
       if: matrix.install_variant != 'pip' || matrix.python-version == 3.13
-
-windows:
-  name: Windows with any available coverage
-  runs-on: windows-latest
-  steps:
+  
+  windows:
+    name: Windows with any available coverage
+    runs-on: windows-latest
+    steps:
     - name: Check out repository code
       uses: actions/checkout@v4
       with:
@@ -166,12 +167,12 @@ windows:
         # requires VNC server and thus only available on Linux
         DISABLE_VNCDOTOOL: 1
 
-macos:
-  name: MacOS with any available coverage
-  # TODO: downgrade from "latest" to 14 due to MacOS 15 suddenly failing a lot of tests
-  # -> should be lifted once we add image logging artifacts to easily debug CI environment
-  runs-on: macos-14
-  steps:
+  macos:
+    name: MacOS with any available coverage
+    # TODO: downgrade from "latest" to 14 due to MacOS 15 suddenly failing a lot of tests
+    # -> should be lifted once we add image logging artifacts to easily debug CI environment
+    runs-on: macos-14
+    steps:
     - name: Check out repository code
       uses: actions/checkout@v4
       with:
@@ -179,7 +180,7 @@ macos:
     - name: Set up Python 3
       uses: actions/setup-python@v5
       with:
-      python-version: '3.12'
+        python-version: '3.12'
     - name: Install non-python dependencies using system packager
       run: |
         # ocr
