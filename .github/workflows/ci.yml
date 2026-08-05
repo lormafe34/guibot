@@ -61,7 +61,7 @@ jobs:
         pushd packaging
         python3 setup.py sdist bdist_wheel
         popd
-        if: matrix.install_variant == 'pip'
+      if: matrix.install_variant == 'pip'
     - run: sleep 3
     - name: Cache large ML models
       uses: actions/cache@v4
@@ -124,7 +124,7 @@ jobs:
          name: '${{ env.artifact_name }}'
          path: '${{ env.artifact_full_path }}'
          
-      if: matrix.install_variant != 'pip' || matrix.python-version == 3.13
+     if: matrix.install_variant != 'pip' || matrix.python-version == 3.13
   
   windows:
     name: Windows with any available coverage
