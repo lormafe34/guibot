@@ -6,7 +6,6 @@ on:
   workflow_dispatch:
 
 jobs:
-
   linux-multi-python:
     name: Linux ${{ matrix.install_variant }} with Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
