@@ -101,18 +101,9 @@ jobs:
         # Get the part after the last dot    "1" for example
         suffix=${VERSION##*.}
         # Combine them with a hyphen         "0.51.1" -> "0.51-1"
-        VERSION_HYPHEN="${prefix}-${suffix}"   
-        if [[ "$(echo ${{ matrix.install_variant }} | cut -d '.' -f 2)" == "fedora" ]]; then
-        readonly variant_version=$(echo ${{ matrix.install_variant }} | cut -d '.' -f 3)
-        PACKAGE_NAME="python3-guibot-${VERSION_HYPHEN}.fc${variant_version}.x86_64.rpm"
-        PACKAGE_PATH="/home/runner/work/guibot/guibot/${PACKAGE_NAME}"
-        elif [[ "${{ matrix.install_variant }}" == "pip" ]]; then
+        VERSION_HYPHEN="${prefix}-${suffix}"
         PACKAGE_NAME="guibot-${VERSION}-py3-none-any.whl"
         PACKAGE_PATH="/home/runner/work/guibot/guibot/packaging/dist/${PACKAGE_NAME}"
-        else
-        PACKAGE_NAME="python3-guibot_${VERSION_HYPHEN}_all.deb"
-        PACKAGE_PATH="/home/runner/work/guibot/guibot/${PACKAGE_NAME}"
-        fi
         echo "artifact_name=$PACKAGE_NAME" >> $GITHUB_ENV
         echo "artifact_full_path=$PACKAGE_PATH" >> $GITHUB_ENV
     - name: Upload Artifacts
