@@ -78,12 +78,12 @@ jobs:
         # give xvfb some time to start
         sleep 3
     - name: Run current semi-isolation semi-integration tests (to be separated in the future)
+      env:
+        INSTALL_VARIANT: ${{ matrix.install_variant }}
+        TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
       run: |
         if [[ "${{ matrix.install_variant }}" != "pip" ]]; then cd packaging && bash packager_docker.sh;
         else cd tests && bash coverage_analysis.sh; fi
-        env:
-        INSTALL_VARIANT: ${{ matrix.install_variant }}
-        TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
       with:
