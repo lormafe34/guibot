@@ -142,10 +142,7 @@ jobs:
         pip install wxPython==4.2.4
         python -c "import wx; app = wx.App(); display = wx.Display()"
     - name: Run current semi-isolation semi-integration tests (to be separated in the future)
-      run: |
-        cd tests
-        bash coverage_analysis.sh
-        env:
+      env:
         # tesseract doesn't have original installers for Windows
         DISABLE_OCR: 1
         # drag/drop and in particular drop has problems with AutoPy on Windows
@@ -154,7 +151,9 @@ jobs:
         DISABLE_XDOTOOL: 1
         # requires VNC server and thus only available on Linux
         DISABLE_VNCDOTOOL: 1
-
+      run: |
+        cd tests
+        bash coverage_analysis.sh
   macos:
     name: MacOS with any available coverage
     # TODO: downgrade from "latest" to 14 due to MacOS 15 suddenly failing a lot of tests
@@ -189,15 +188,15 @@ jobs:
         pip install wxPython==4.2.4
         python -c "import wx; app = wx.App(); display = wx.Display()"
     - name: Run current semi-isolation semi-integration tests (to be separated in the future)
+      env:
+          # drag/drop and in particular drop has problems with AutoPy on macOS
+          DISABLE_DRAG: 1
+          # requires X server and thus only available on Linux
+          DISABLE_XDOTOOL: 1
+          # requires VNC server and thus only available on Linux
+          DISABLE_VNCDOTOOL: 1
       run: |
-        cd tests
-        bash coverage_analysis.sh
-        env:
-        # drag/drop and in particular drop has problems with AutoPy on macOS
-        DISABLE_DRAG: 1
-        # requires X server and thus only available on Linux
-        DISABLE_XDOTOOL: 1
-        # requires VNC server and thus only available on Linux
-        DISABLE_VNCDOTOOL: 1
+          cd tests
+          bash coverage_analysis.sh 
         # TODO: enable PyAutoGUI for macOS if there is more interest
         DISABLE_PYAUTOGUI: 1
