@@ -195,8 +195,8 @@ jobs:
           DISABLE_XDOTOOL: 1
           # requires VNC server and thus only available on Linux
           DISABLE_VNCDOTOOL: 1
+          # TODO: enable PyAutoGUI for macOS if there is more interest
+          DISABLE_PYAUTOGUI: 1
       run: |
           cd tests
           bash coverage_analysis.sh 
-        # TODO: enable PyAutoGUI for macOS if there is more interest
-        DISABLE_PYAUTOGUI: 1
