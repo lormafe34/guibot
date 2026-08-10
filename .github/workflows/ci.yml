@@ -25,7 +25,15 @@ jobs:
       fail-fast: false
 
     steps:
-      - run: echo "Job triggered by a ${{ github.event_name }} event on branch is ${{ github.ref }} in repository is ${{ github.repository }}, runner on ${{ runner.os }}"
+      - name: Log workflow context
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          WORKFLOW_REF: ${{ github.ref }}
+          REPOSITORY_NAME: ${{ github.repository }}
+          RUNNER_PLATFORM: ${{ runner.os }}
+        run: |
+          printf 'Job triggered by a %s event on branch %s in repository %s, runner on %s\n' \
+          "$EVENT_NAME"  "$WORKFLOW_REF" "$REPOSITORY_NAME" "$RUNNER_PLATFORM"
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
@@ -110,7 +118,7 @@ jobs:
               PACKAGE_NAME="python3-guibot-${VERSION_HYPHEN}.fc${variant_version}.x86_64.rpm"
               PACKAGE_PATH="/home/runner/work/guibot/guibot/${PACKAGE_NAME}"
           elif [[ "${{ matrix.install_variant }}" == "pip" ]]; then
-              PACKAGE_NAME="guibot-${VERSION}-py3-none-any.whl"
+              PACKAGE_NAME="guibot-${{ VERSION }}-${{ matrix.python-version }}-${{ matrix.install_variant }}-py3-none-any.whl"
               PACKAGE_PATH="/home/runner/work/guibot/guibot/packaging/dist/${PACKAGE_NAME}"
           else
               PACKAGE_NAME="python3-guibot_${VERSION_HYPHEN}_all.deb"
