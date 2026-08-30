@@ -245,7 +245,7 @@ class ChainTest(unittest.TestCase):
         :returns: target finder with the parsed (and generated) settings
         """
         # guess the backend from the filename
-        parts = filename.split("_")
+        parts = os.path.basename(filename).split("_")
         backend = parts[1] if len(parts) > 1 else parts[0]
         finder_mock = Mock()
         finder_mock.params = {
@@ -309,6 +309,9 @@ class ChainTest(unittest.TestCase):
         """Test that all match files in the steps file are correctly loaded."""
         # actually create files as mocking os.open() would be too cumbersome
         text_file = self._create_temp_text_file("item_for_text")
+        text_matchfile = os.path.join(
+            "temporary_directory", "some_text_matchfile.match"
+        )
 
         stepsfile_contents = [
             "item_for_contour.png	some_contour_matchfile.match",
@@ -318,7 +321,7 @@ class ChainTest(unittest.TestCase):
             "item_for_cascade.xml	some_cascade_matchfile.match",
             "item_for_template.png	some_template_matchfile.match",
             "item_for_autopy.png	some_autopy_matchfile.match",
-            f"{text_file}	some_text_matchfile.match"
+            f"{text_file}	{text_matchfile}"
         ]
         self._build_chain(os.linesep.join(stepsfile_contents))
 
