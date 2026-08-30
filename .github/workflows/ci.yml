@@ -81,6 +81,7 @@ jobs:
       env:
         INSTALL_VARIANT: ${{ matrix.install_variant }}
         TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
+        DISABLE_AUTOPY: ${{ matrix.python-version == '3.14' && '1' || '0' }}
       run: |
         if [[ "${{ matrix.install_variant }}" != "pip" ]]; then cd packaging && bash packager_docker.sh;
         else cd tests && bash coverage_analysis.sh; fi
