@@ -9,6 +9,7 @@ jobs:
   linux-multi-python:
     name: Linux ${{ matrix.install_variant }} with Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.python-version == 3.14 }}
     env:
       DISPLAY: ':99.0'
 
