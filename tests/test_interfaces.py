@@ -16,6 +16,7 @@
 
 import os
 import sys
+import unittest
 import inspect
 from unittest import main, mock, TestCase
 
