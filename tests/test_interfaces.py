@@ -15,8 +15,8 @@
 # along with guibot.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-import unittest
 import sys
+import unittest
 import inspect
 from unittest import main, mock, TestCase
 
