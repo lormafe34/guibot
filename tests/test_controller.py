@@ -53,7 +53,6 @@ def retry_on_failure(max_attempts=5, delay=1):
     return decorator
 
 
-@unittest.skipIf(os.environ.get('DISABLE_AUTOPY', "0") == "1", "AutoPy disabled")
 class ControllerTest(unittest.TestCase):
 
     @classmethod
@@ -391,9 +390,7 @@ class ControllerTest(unittest.TestCase):
         """Check key type effect for all display controller backends."""
         for display in self.backends:
             # include some modifiers without direct effect in this case
-            alt_key = getattr(getattr(display, 'keymap', None), 'AlT', None)
-            modifier_list = [None, [alt_key]] if alt_key else [None]
-            for modifiers in modifier_list:
+            for modifiers in [None, [display.keymap.ALT]]:
                 shutil.rmtree(self.logpath, ignore_errors=True)
                 self.show_application()
 
