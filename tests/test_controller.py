@@ -22,6 +22,8 @@ import shutil
 import unittest
 import subprocess
 from typing import Any
+import builtins
+import pytest
 
 import common_test
 from guibot.errors import *
@@ -412,3 +414,16 @@ class ControllerTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+def test_autopy_controller_missing_backend(monkeypatch):
+    """Simulate AutoPy  not being installed and check the correct error is raised."""
+    real_import = builtins.__import__
+
+    def fake_import(name, *args, **kwargs):
+        if name == "autopy":
+            raise ImportError("Simulated missing autopy")
+        return real_import(name, *args, **kwargs)
+
+    monkeypatch.setattr(builtins, "__import__", fake_import)
+
+    with pytest.raises(UninitializedBackendError):
+        AutoPyController(configure=True, synchronize=True)
