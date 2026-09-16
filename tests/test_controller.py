@@ -54,8 +54,7 @@ def retry_on_failure(max_attempts=5, delay=1):
         return wrapper
     return decorator
 
-
-@unittest.skipIf(os.environ.get('DISABLE_AUTOPY', "0") == "1", "AutoPy disabled")
+@unittest.skipIf(common_test.autopy_unavailable(), "AutoPy disabled")
 class ControllerTest(unittest.TestCase):
 
     @classmethod
