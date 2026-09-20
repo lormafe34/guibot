@@ -32,7 +32,6 @@ from guibot.controller import *
 from guibot.errors import *
 
 
-@unittest.skipIf(common_test.autopy_unavailable(), "AutoPy not installed or disabled")
 class RegionTest(unittest.TestCase):
 
     @classmethod

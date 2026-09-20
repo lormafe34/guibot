@@ -27,14 +27,3 @@ except:
     # Add upper level 'guibot' directory to import path
     # no matter from which directory we are called
     sys.path.insert(0, guibot_dir)
-
-try:
-    import autopy
-except ImportError:
-    autopy = None
-
-def autopy_unavailable():
-    """Return True if AutoPy is not importable or explicitly disabled."""
-    return autopy is None or os.environ.get('DISABLE_AUTOPY', "0") == "1"
-
-

@@ -14,17 +14,13 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with guibot.  If not, see <http://www.gnu.org/licenses/>.
 
-import os
 import sys
 import inspect
-from unittest import main, mock, TestCase, skipIf
+from unittest import main, mock, TestCase
 
 import common_test
 
-try:
-    import autopy
-except ImportError:
-    autopy = None
+
 class SimpleAPITest(TestCase):
 
     def setUp(self) -> None:
@@ -68,10 +64,7 @@ class SimpleAPITest(TestCase):
         self.assertEqual(buttons.mod.MOD_SHIFT, "")
         self.assertEqual(buttons.mouse.LEFT_BUTTON, 1)
 
-@skipIf(
-    autopy is None or os.environ.get('DISABLE_AUTOPY', "0") == "1",
-    "AutoPy not installed or disabled"
-)
+
 class ProxyAPITest(TestCase):
 
     def setUp(self) -> None:
