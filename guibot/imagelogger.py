@@ -171,12 +171,7 @@ class ImageLogger(object):
         self.haystack.save(haystack_path)
 
     def dump_find_error(self) -> None:
-        """
-        Write the needle and haystack of a failed find.
-
-        This is a near minimal verbosity dump that is also active
-        at the default ERROR logging level.
-        """
+        """Write the needle and haystack of a failed find at ERROR level."""
         self.dump_matched_images(max_level=logging.ERROR)
         if ImageLogger.logging_level <= logging.ERROR:
             ImageLogger.step += 1
