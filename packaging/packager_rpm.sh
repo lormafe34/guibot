@@ -34,6 +34,7 @@ if [[ -n "$DISABLE_AUTOPY" && "$DISABLE_AUTOPY" == "1" && $distro_version -gt 32
 else
     pip3 install autopy
 fi
+python3 -c "import autopy, sys; print(autopy.__file__, sys.executable)"
 pip3 install --ignore-installed typing_extensions
 pip3 install vncdotool==0.12.0
 dnf -y install xdotool xwd ImageMagick
